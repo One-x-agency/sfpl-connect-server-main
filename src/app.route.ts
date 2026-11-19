@@ -1,0 +1,35 @@
+import { Router } from 'express';
+import authRoutes from '@/modules/auth/auth.route.js';
+import fileRoutes from '@/modules/file/file.route.js';
+import customerRoutes from '@/modules/customer/customer.route.js';
+import projectRoutes from '@/modules/project/project.route.js';
+import deviceRoutes from '@/modules/device/device.route.js';
+import simPlanRoutes from '@/modules/sim-plan/simPlan.route.js';
+import simCardRoutes from '@/modules/sim-card/simCard.route.js';
+import dashboardRoutes from '@/modules/dashboard/dashboard.route.js';
+import userRoutes from '@/modules/user/user.route.js';
+import metaDataRoutes from '@/modules/meta-data/metaData.route.js';
+import cronMonitoringRoutes from '@/modules/cron-monitoring/cron-monitoring.route.js';
+import connectStoreDeviceRoutes from '@/modules/connect-store-device/connect-store-device.route.js';
+import connectStoreOrderRoutes from '@/modules/connect-store-order/connect-store-order.route.js';
+import activityLogRoutes from '@/modules/activity-log/activity-log.route.js';
+import supportTicketRoutes from '@/modules/support-ticket/support-ticket.route.js';
+
+const router = Router();
+
+router.use('/auth', authRoutes);
+router.use('/dashboard', dashboardRoutes);
+router.use('/files', fileRoutes);
+router.use('/customers', customerRoutes);
+router.use('/projects', projectRoutes);
+router.use('/devices', deviceRoutes);
+router.use('/sim-plans', simPlanRoutes);
+router.use('/sim-cards', simCardRoutes);
+router.use('/users', userRoutes);
+router.use('/meta-data', metaDataRoutes);
+router.use('/cron-jobs', cronMonitoringRoutes);
+router.use('/connect-store-devices', connectStoreDeviceRoutes);
+router.use('/connect-store-orders', connectStoreOrderRoutes);
+router.use('/activity-logs', activityLogRoutes);
+router.use('/tickets', supportTicketRoutes);
+export default router;

@@ -1,0 +1,14 @@
+node_modules
+dist
+logs
+tmp
+files
+command
+.DS_Store
+.vscode
+.git
+.github
+*.md
+.env
+.env.local
+FCM.json

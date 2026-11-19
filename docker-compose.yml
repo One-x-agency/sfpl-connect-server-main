@@ -1,0 +1,44 @@
+services:
+  postgres-18:
+    image: postgres:18
+    container_name: postgres-18
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-1234567890}
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_18_data:/var/lib/postgresql
+
+  redis-stack:
+    image: redis/redis-stack:latest
+    container_name: redis-stack
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_stack_data:/data
+
+  sfpl-server:
+    image: rajraiyani/sfpl-server:latest
+    pull_policy: always
+    depends_on:
+      - postgres-18
+      - redis-stack
+    container_name: sfpl-server
+    ports:
+      - '3007:3007'
+    env_file:
+      - ./.env
+    volumes:
+      # Persist file uploads
+      - ./files:/app/files
+      - ./logs:/app/logs
+      - ./tmp:/app/tmp
+      - ./FCM.json:/app/FCM.json
+    command: sh -c "npx dbmate up && npm run start"
+
+volumes:
+  postgres_18_data:
+    driver: local
+  redis_stack_data:
+    driver: local
